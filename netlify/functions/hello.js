@@ -6,6 +6,7 @@
 // of your site. Netlify Functions will handle the rest for you.
 
 const axios = require('axios');
+const { JSDOM } = require('jsdom');
 exports.handler = async event => {
     
     /*
