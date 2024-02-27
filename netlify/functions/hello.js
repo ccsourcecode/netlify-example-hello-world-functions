@@ -7,7 +7,7 @@
 
 const axios = require('axios');
 exports.handler = async event => {
-    const response = await axios.get('https://ithelp.ithome.com.tw/articles/10315665');
+    const response = await axios.get('https://www.learnwithjason.dev/blog/serverless-functions/deploy-first-serverless-function/');
     const subject = event.queryStringParameters.name || 'World'
     return {
         statusCode: 200,
