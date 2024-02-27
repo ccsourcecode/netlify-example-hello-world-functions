@@ -14,3 +14,20 @@ exports.handler = async event => {
         body: `Hello ${subject}! ${response.data} `,
     }
 }
+
+
+function getDataUrl(url) {
+  return axios
+    .get(url, {
+      responseType: 'arraybuffer',
+    })
+    .then((response) => {
+      const contentType = response.headers['content-type'];
+      const base64 = Buffer.from(response.data, 'binary').toString('base64');
+      return `data:${contentType};base64,${base64}`;
+    })
+    .catch((error) => {
+      console.error('Error fetching image:', error.message);
+      return url; // Return the original URL on error
+    });
+}
