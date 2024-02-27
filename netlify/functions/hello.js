@@ -7,6 +7,8 @@
 
 const axios = require('axios');
 exports.handler = async event => {
+    
+    /*
     const response = await axios.get('https://css-tricks.com/accessing-data-netlify-functions-react/');
     const subject = event.queryStringParameters.name || 'World'
     return {
@@ -14,6 +16,33 @@ exports.handler = async event => {
         body: `Hello ${subject}! ${response.data} `,
     }
 }
+*/
+      try {
+    const response = await axios.get(url);
+    const { document } = new JSDOM(response.data).window;
+
+    const images = document.querySelectorAll('img');
+
+    images.forEach((img) => {
+      const dataUrl = getDataUrl(img.src);
+      img.src = dataUrl;
+    });
+
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'text/html',
+      },
+      body: document.documentElement.outerHTML,
+    };
+  } catch (error) {
+    console.error('Error:', error.message);
+    return {
+      statusCode: 500,
+      body: 'An error occurred while rendering the page.',
+    };
+  }
+};
 
 
 function getDataUrl(url) {
