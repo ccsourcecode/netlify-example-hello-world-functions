@@ -18,6 +18,7 @@ exports.handler = async event => {
     }
 }
 */
+    const url = "https://css-tricks.com/accessing-data-netlify-functions-react/";
       try {
     const response = await axios.get(url);
     const { document } = new JSDOM(response.data).window;
