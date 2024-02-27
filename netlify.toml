@@ -1,7 +1,6 @@
 [build]
     publish = "public"
     command = "echo No build command"
-    functions = "functions"
     node_bundler = "esbuild"
 
 [dev]
